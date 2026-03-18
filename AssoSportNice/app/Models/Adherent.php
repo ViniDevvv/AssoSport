@@ -27,7 +27,6 @@ class Adherent extends Authenticatable
     protected $primaryKey = 'ADH_ID';
     public $timestamps = false;
     public $incrementing = false;
-    protected $keyType = 'string';
 
 
     protected $fillable = [
@@ -41,7 +40,7 @@ class Adherent extends Authenticatable
         'ADH_ROLE',
         'ADH_HASH_PWD',
         'ADH_DDN',
-        'ADH_ADRESSE'
+        'ADH_adresse'
     ];
 
     /**
