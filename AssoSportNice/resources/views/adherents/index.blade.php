@@ -43,5 +43,5 @@
         </tbody>
     </table>
 
-    {{ $adherents->links() }}
+   
 @endsection

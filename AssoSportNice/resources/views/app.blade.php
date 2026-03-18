@@ -27,34 +27,19 @@
 
 <nav>
     <ul>
-<<<<<<< HEAD
         <li><a href="{{ route('adherents.index') }}">Adhérents</a></li>
-=======
-        <li><a href="{{ route('inscriptions.index') }}">Inscriptions</a></li>
-        <li><a href="{{ route('competitions.index') }}">Compétitions</a></li>
-        <li><a href="{{ route('adherents.index') }}">Adhérents</a></li>
-        <li><a href="{{ route('clubs.index') }}">Clubs</a></li>
-        <li><a href="{{ route('disciplines.index') }}">Disciplines</a></li>
->>>>>>> 08478081df2ad587f0c3b9bd39c591f716992fca
     </ul>
 </nav>
 
 <main>
-<<<<<<< HEAD
-    @yield('content')
-=======
+    
     @yield('content')       <!-- ici sera insérée la section content -->
->>>>>>> 08478081df2ad587f0c3b9bd39c591f716992fca
 </main>
 
 <footer>
     &copy; 2026 NiceAssoSport - Tous droits réservés
     <div class="rgpd">
-<<<<<<< HEAD
          Conformément au RGPD, vos données personnelles sont utilisées uniquement pour la gestion des inscriptions et compétitions sportives. (A COMPLKETER)
-=======
-        Conformément au RGPD, vos données personnelles sont utilisées uniquement pour la gestion des inscriptions et compétitions sportives. (A COMPLKETER)
->>>>>>> 08478081df2ad587f0c3b9bd39c591f716992fca
         <a href="{{ route('rgpd') }}" style="color: #1abc9c;">En savoir plus</a>
     </div>
 </footer> </body> </html>

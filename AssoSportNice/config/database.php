@@ -1,10 +1,7 @@
 <?php
 
 use Illuminate\Support\Str;
-<<<<<<< HEAD
 use Pdo\Mysql;
-=======
->>>>>>> 08478081df2ad587f0c3b9bd39c591f716992fca
 
 return [
 
@@ -63,11 +60,7 @@ return [
             'strict' => true,
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
-<<<<<<< HEAD
                 (PHP_VERSION_ID >= 80500 ? Mysql::ATTR_SSL_CA : PDO::MYSQL_ATTR_SSL_CA) => env('MYSQL_ATTR_SSL_CA'),
-=======
-                (PHP_VERSION_ID >= 80500 ? \Pdo\Mysql::ATTR_SSL_CA : \PDO::MYSQL_ATTR_SSL_CA) => env('MYSQL_ATTR_SSL_CA'),
->>>>>>> 08478081df2ad587f0c3b9bd39c591f716992fca
             ]) : [],
         ],
 
@@ -87,11 +80,7 @@ return [
             'strict' => true,
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
-<<<<<<< HEAD
                 (PHP_VERSION_ID >= 80500 ? Mysql::ATTR_SSL_CA : PDO::MYSQL_ATTR_SSL_CA) => env('MYSQL_ATTR_SSL_CA'),
-=======
-                (PHP_VERSION_ID >= 80500 ? \Pdo\Mysql::ATTR_SSL_CA : \PDO::MYSQL_ATTR_SSL_CA) => env('MYSQL_ATTR_SSL_CA'),
->>>>>>> 08478081df2ad587f0c3b9bd39c591f716992fca
             ]) : [],
         ],
 

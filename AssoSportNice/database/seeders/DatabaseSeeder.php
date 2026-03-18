@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-<<<<<<< HEAD
         // disable foreign key checks for batch insertions
         \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
@@ -29,13 +28,5 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-=======
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
->>>>>>> 08478081df2ad587f0c3b9bd39c591f716992fca
     }
 }
