@@ -11,9 +11,16 @@
     <div class="container topbar-inner">
         <h1 class="brand">NiceAssoSport</h1>
         <nav class="main-nav" aria-label="Navigation principale">
-            <a class="nav-link {{ request()->routeIs('clubs.*') ? 'is-active' : '' }}" href="{{ route('clubs.index') }}">Clubs</a>
-            <a class="nav-link {{ request()->routeIs('adherents.*') ? 'is-active' : '' }}" href="{{ route('adherents.index') }}">Adherents</a>
+            <a class="nav-link {{ request()->routeIs('competitions.*') ? 'is-active' : '' }}" href="{{ route('competitions.index') }}">Competitions</a>
+            @if((int) session('auth_adherent_role') === 1)
+                <a class="nav-link {{ request()->routeIs('admin.*') ? 'is-active' : '' }}" href="{{ route('admin.dashboard') }}">Admin</a>
+                <a class="nav-link {{ request()->routeIs('clubs.*') ? 'is-active' : '' }}" href="{{ route('clubs.index') }}">Clubs</a>
+                <a class="nav-link {{ request()->routeIs('disciplines.*') ? 'is-active' : '' }}" href="{{ route('disciplines.index') }}">Disciplines</a>
+                <a class="nav-link {{ request()->routeIs('adherents.*') ? 'is-active' : '' }}" href="{{ route('adherents.index') }}">Utilisateurs</a>
+            @endif
+
             @if(session()->has('auth_adherent_id'))
+                <span class="nav-link">{{ session('auth_adherent_nom') }} ({{ (int) session('auth_adherent_role') === 1 ? 'ADMIN' : 'VISITEUR' }})</span>
                 <form action="{{ route('logout') }}" method="POST" style="display:inline;">
                     @csrf
                     <button type="submit" class="nav-link" style="background:none;border:none;cursor:pointer;">Deconnexion</button>

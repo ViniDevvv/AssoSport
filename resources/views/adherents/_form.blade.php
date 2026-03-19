@@ -26,6 +26,24 @@
 </div>
 
 <div class="form-group">
+    <label for="ADH_EMAIL">Email</label>
+    <input type="email" class="form-control" id="ADH_EMAIL" name="ADH_EMAIL" value="{{ old('ADH_EMAIL', $adherent->ADH_EMAIL ?? '') }}" required>
+</div>
+
+<div class="form-group">
+    <label for="ADH_ROLE">Role</label>
+    <select class="form-control" id="ADH_ROLE" name="ADH_ROLE" required>
+        <option value="0" {{ (string) old('ADH_ROLE', $adherent->ADH_ROLE ?? 0) === '0' ? 'selected' : '' }}>VISITEUR</option>
+        <option value="1" {{ (string) old('ADH_ROLE', $adherent->ADH_ROLE ?? 0) === '1' ? 'selected' : '' }}>ADMIN</option>
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="ADH_PASSWORD">Mot de passe {{ isset($adherent) ? '(laisser vide pour ne pas changer)' : '' }}</label>
+    <input type="password" class="form-control" id="ADH_PASSWORD" name="ADH_PASSWORD" {{ isset($adherent) ? '' : 'required' }}>
+</div>
+
+<div class="form-group">
     <label for="ADH_DDN">Date de naissance</label>
     <input type="date" class="form-control" id="ADH_DDN" name="ADH_DDN" value="{{ old('ADH_DDN', $adherent->ADH_DDN ?? '') }}">
 </div>

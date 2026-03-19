@@ -8,14 +8,21 @@ class Competition extends Model
 {
     protected $table = 'COMPETITION';
     protected $primaryKey = 'COM_ID';
+    public $incrementing = false;
+    protected $keyType = 'string';
     public $timestamps = false;
 
     protected $fillable = [
+        'COM_ID',
         'CLU_ID',
         'DIS_ID',
         'CLU_ID_LOCAL',
         'COM_NOM',
         'COM_DATE',
+    ];
+
+    protected $casts = [
+        'COM_DATE' => 'date',
     ];
 
     public function club()

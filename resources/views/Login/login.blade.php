@@ -9,8 +9,8 @@
         @csrf
 
         <div class="form-group">
-            <label for="email">E-mail</label>
-            <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
+            <label for="login">E-mail ou identifiant</label>
+            <input type="text" class="form-control" id="login" name="login" value="{{ old('login') }}" required>
         </div>
 
         <div class="form-group">

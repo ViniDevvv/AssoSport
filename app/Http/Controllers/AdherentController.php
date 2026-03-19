@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Adherent;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class AdherentController extends Controller
 {
@@ -22,18 +22,20 @@ class AdherentController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'ADH_ID' => 'nullable|string|max:15|unique:ADHERENT,ADH_ID',
-            'CLU_ID' => 'required|string|max:15',
-            'DIS_ID' => 'required|string|max:10',
+            'ADH_ID' => 'required|integer|unique:ADHERENT,ADH_ID',
+            'CLU_ID' => 'required|integer',
+            'DIS_ID' => 'required|integer',
             'ADH_NOM' => 'required|string|max:50',
             'ADH_PRENOM' => 'required|string|max:25',
+            'ADH_EMAIL' => 'required|email|max:100|unique:ADHERENT,ADH_EMAIL',
+            'ADH_ROLE' => 'required|integer|in:0,1',
+            'ADH_PASSWORD' => 'required|string|min:4|max:100',
             'ADH_DDN' => 'nullable|date',
             'ADH_ADRESSE' => 'nullable|string|max:50',
         ]);
 
-        if (empty($data['ADH_ID'])) {
-            $data['ADH_ID'] = strtoupper(Str::random(15));
-        }
+        $data['ADH_HASH_PWD'] = Hash::make($data['ADH_PASSWORD']);
+        unset($data['ADH_PASSWORD']);
 
         Adherent::create($data);
 
@@ -49,14 +51,22 @@ class AdherentController extends Controller
     public function update(Request $request, Adherent $adherent)
     {
         $data = $request->validate([
-            'ADH_ID' => "required|string|max:15|unique:ADHERENT,ADH_ID,{$adherent->ADH_ID},ADH_ID",
-            'CLU_ID' => 'required|string|max:15',
-            'DIS_ID' => 'required|string|max:10',
+            'ADH_ID' => "required|integer|unique:ADHERENT,ADH_ID,{$adherent->ADH_ID},ADH_ID",
+            'CLU_ID' => 'required|integer',
+            'DIS_ID' => 'required|integer',
             'ADH_NOM' => 'required|string|max:50',
             'ADH_PRENOM' => 'required|string|max:25',
+            'ADH_EMAIL' => "required|email|max:100|unique:ADHERENT,ADH_EMAIL,{$adherent->ADH_ID},ADH_ID",
+            'ADH_ROLE' => 'required|integer|in:0,1',
+            'ADH_PASSWORD' => 'nullable|string|min:4|max:100',
             'ADH_DDN' => 'nullable|date',
             'ADH_ADRESSE' => 'nullable|string|max:50',
         ]);
+
+        if (!empty($data['ADH_PASSWORD'])) {
+            $data['ADH_HASH_PWD'] = Hash::make($data['ADH_PASSWORD']);
+        }
+        unset($data['ADH_PASSWORD']);
 
         $adherent->update($data);
 

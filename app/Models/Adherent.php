@@ -36,7 +36,6 @@ class Adherent extends Authenticatable
         'ADH_NOM',
         'ADH_PRENOM',
         'ADH_EMAIL',
-        'ADH_PASSWORD',
         'ADH_ROLE',
         'ADH_HASH_PWD',
         'ADH_DDN',
