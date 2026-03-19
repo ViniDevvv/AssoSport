@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\CompetitionController;
 use App\Http\Controllers\DisciplineController;
+use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,9 +19,15 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::view('/rgpd', 'layouts.rgpd')->name('rgpd');
 
-// Parcours visiteur : competitions publiques
+// Parcours public (utilisateur non connecte)
 Route::get('/competitions', [CompetitionController::class, 'index'])->name('competitions.index');
 Route::get('/competitions/{id}', [CompetitionController::class, 'show'])->name('competitions.show');
+
+// Parcours adherent connecte
+Route::middleware(['session.auth'])->group(function () {
+    Route::post('/competitions/{id}/inscription', [InscriptionController::class, 'store'])->name('inscriptions.store');
+    Route::get('/mes-inscriptions', [InscriptionController::class, 'index'])->name('inscriptions.index');
+});
 
 Route::middleware(['session.auth', 'admin'])->group(function () {
     // Supervision plateforme

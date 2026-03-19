@@ -14,6 +14,19 @@
         <p><strong>Club local :</strong> {{ $competition->club_local_nom ?? $competition->CLU_ID_LOCAL }}</p>
     </div>
 
+    @if(session()->has('auth_adherent_id'))
+        <div class="mt-3">
+            @if($isAlreadyRegistered)
+                <p>Vous etes deja inscrit a cette competition.</p>
+            @else
+                <form method="POST" action="{{ route('inscriptions.store', $competition->COM_ID) }}">
+                    @csrf
+                    <button type="submit" class="btn">S'inscrire a cette competition</button>
+                </form>
+            @endif
+        </div>
+    @endif
+
     <p class="mt-3">
         <a href="{{ route('competitions.index') }}">Retour a la liste des competitions</a>
     </p>

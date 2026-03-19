@@ -33,7 +33,7 @@
 <div class="form-group">
     <label for="ADH_ROLE">Role</label>
     <select class="form-control" id="ADH_ROLE" name="ADH_ROLE" required>
-        <option value="0" {{ (string) old('ADH_ROLE', $adherent->ADH_ROLE ?? 0) === '0' ? 'selected' : '' }}>VISITEUR</option>
+        <option value="0" {{ (string) old('ADH_ROLE', $adherent->ADH_ROLE ?? 0) === '0' ? 'selected' : '' }}>ADHERENT</option>
         <option value="1" {{ (string) old('ADH_ROLE', $adherent->ADH_ROLE ?? 0) === '1' ? 'selected' : '' }}>ADMIN</option>
     </select>
 </div>

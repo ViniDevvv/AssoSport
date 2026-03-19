@@ -21,42 +21,50 @@ class DisciplineController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'DIS_ID' => ['required', 'string', 'max:10', 'unique:DISCIPLINE,DIS_ID'],
-            'DIS_NOM' => ['required', 'string', 'max:50'],
-        ]);
+        $data = $request->validate($this->disciplineRules());
 
         Discipline::create($data);
 
         return redirect()->route('disciplines.index')->with('success', 'Discipline creee avec succes.');
     }
 
-    public function edit(string $id)
+    public function edit(int $id)
     {
         $discipline = Discipline::findOrFail($id);
 
         return view('disciplines.edit', compact('discipline'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(Request $request, int $id)
     {
         $discipline = Discipline::findOrFail($id);
 
-        $data = $request->validate([
-            'DIS_ID' => ['required', 'string', 'max:10', 'unique:DISCIPLINE,DIS_ID,' . $discipline->DIS_ID . ',DIS_ID'],
-            'DIS_NOM' => ['required', 'string', 'max:50'],
-        ]);
+        $data = $request->validate($this->disciplineRules($discipline->DIS_ID));
 
         $discipline->update($data);
 
         return redirect()->route('disciplines.index')->with('success', 'Discipline modifiee avec succes.');
     }
 
-    public function destroy(string $id)
+    public function destroy(int $id)
     {
         $discipline = Discipline::findOrFail($id);
         $discipline->delete();
 
         return redirect()->route('disciplines.index')->with('success', 'Discipline supprimee avec succes.');
+    }
+
+    private function disciplineRules(?int $currentId = null): array
+    {
+        $idRules = ['required', 'integer', 'unique:DISCIPLINE,DIS_ID'];
+
+        if ($currentId !== null) {
+            $idRules = ['required', 'integer', 'unique:DISCIPLINE,DIS_ID,' . $currentId . ',DIS_ID'];
+        }
+
+        return [
+            'DIS_ID' => $idRules,
+            'DIS_NOM' => ['required', 'string', 'max:50'],
+        ];
     }
 }

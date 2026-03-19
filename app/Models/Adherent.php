@@ -26,7 +26,8 @@ class Adherent extends Authenticatable
 
     protected $primaryKey = 'ADH_ID';
     public $timestamps = false;
-    public $incrementing = false;
+    public $incrementing = true;
+    protected $keyType = 'int';
 
 
     protected $fillable = [
@@ -48,8 +49,7 @@ class Adherent extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        'ADH_HASH_PWD',
     ];
 
     /**
@@ -58,7 +58,8 @@ class Adherent extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'ADH_DDN' => 'date',
+        'ADH_ROLE' => 'integer',
     ];
 
 
@@ -67,8 +68,8 @@ class Adherent extends Authenticatable
         return $this->belongsTo(Club::class, 'CLU_ID', 'CLU_ID');
     }
 
-    public function hasRole(string $role): bool
+    public function hasRole(int $role): bool
     {
-        return $this->ADH_ROLE === $role;
+        return (int) $this->ADH_ROLE === $role;
     }
 }

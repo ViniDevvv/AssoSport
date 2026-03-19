@@ -31,7 +31,7 @@
                     <td>{{ $adherent->ADH_NOM }}</td>
                     <td>{{ $adherent->ADH_PRENOM }}</td>
                     <td>{{ $adherent->ADH_EMAIL }}</td>
-                    <td>{{ (int) $adherent->ADH_ROLE === 1 ? 'ADMIN' : 'VISITEUR' }}</td>
+                    <td>{{ (int) $adherent->ADH_ROLE === 1 ? 'ADMIN' : 'ADHERENT' }}</td>
                     <td>{{ $adherent->CLU_ID }}</td>
                     <td>{{ $adherent->DIS_ID }}</td>
                     <td>

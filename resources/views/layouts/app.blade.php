@@ -20,7 +20,10 @@
             @endif
 
             @if(session()->has('auth_adherent_id'))
-                <span class="nav-link">{{ session('auth_adherent_nom') }} ({{ (int) session('auth_adherent_role') === 1 ? 'ADMIN' : 'VISITEUR' }})</span>
+                @if((int) session('auth_adherent_role') !== 1)
+                    <a class="nav-link {{ request()->routeIs('inscriptions.*') ? 'is-active' : '' }}" href="{{ route('inscriptions.index') }}">Mes inscriptions</a>
+                @endif
+                <span class="nav-link">{{ session('auth_adherent_nom') }} ({{ (int) session('auth_adherent_role') === 1 ? 'ADMIN' : 'ADHERENT' }})</span>
                 <form action="{{ route('logout') }}" method="POST" style="display:inline;">
                     @csrf
                     <button type="submit" class="nav-link" style="background:none;border:none;cursor:pointer;">Deconnexion</button>

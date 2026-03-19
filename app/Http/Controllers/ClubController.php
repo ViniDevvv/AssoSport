@@ -24,14 +24,7 @@ class ClubController extends Controller
     // Enregistre un nouveau club
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'CLU_NOM' => ['required', 'string', 'max:50'],
-            'CLU_ADRESSEVILLE' => ['nullable', 'string', 'max:50'],
-            'CLU_ADRESSERUE' => ['nullable', 'string', 'max:25'],
-            'CLU_ADRESSECP' => ['nullable', 'string', 'max:6'],
-            'CLU_MAIL' => ['nullable', 'email', 'max:25'],
-            'CLU_TELFIXE' => ['nullable', 'string', 'max:15'],
-        ]);
+        $data = $request->validate($this->clubRules());
 
         Club::create($data);
 
@@ -51,14 +44,7 @@ class ClubController extends Controller
     {
         $club = Club::findOrFail($id);
 
-        $data = $request->validate([
-            'CLU_NOM' => ['required', 'string', 'max:50'],
-            'CLU_ADRESSEVILLE' => ['nullable', 'string', 'max:50'],
-            'CLU_ADRESSERUE' => ['nullable', 'string', 'max:25'],
-            'CLU_ADRESSECP' => ['nullable', 'string', 'max:6'],
-            'CLU_MAIL' => ['nullable', 'email', 'max:25'],
-            'CLU_TELFIXE' => ['nullable', 'string', 'max:15'],
-        ]);
+        $data = $request->validate($this->clubRules());
 
         $club->update($data);
 
@@ -72,5 +58,17 @@ class ClubController extends Controller
         $club->delete();
 
         return redirect()->route('clubs.index')->with('success', 'Club supprime avec succes.');
+    }
+
+    private function clubRules(): array
+    {
+        return [
+            'CLU_NOM' => ['required', 'string', 'max:50'],
+            'CLU_ADRESSEVILLE' => ['nullable', 'string', 'max:50'],
+            'CLU_ADRESSERUE' => ['nullable', 'string', 'max:25'],
+            'CLU_ADRESSECP' => ['nullable', 'string', 'max:6'],
+            'CLU_MAIL' => ['nullable', 'email', 'max:25'],
+            'CLU_TELFIXE' => ['nullable', 'string', 'max:15'],
+        ];
     }
 }
