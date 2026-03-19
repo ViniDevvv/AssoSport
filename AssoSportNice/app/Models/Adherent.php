@@ -27,7 +27,6 @@ class Adherent extends Authenticatable
     protected $primaryKey = 'ADH_ID';
     public $timestamps = false;
     public $incrementing = false;
-    protected $keyType = 'string';
 
 
     protected $fillable = [
@@ -66,11 +65,11 @@ class Adherent extends Authenticatable
 
     public function club()
     {
-        return $this->belongsTo(Club::class, 'clu_id', 'CLU_ID');
+        return $this->belongsTo(Club::class, 'CLU_ID', 'CLU_ID');
     }
 
     public function hasRole(string $role): bool
     {
-        return $this->role === $role;
+        return $this->ADH_ROLE === $role;
     }
 }

@@ -1,4 +1,4 @@
-@extends('app')
+@extends('layouts.app')
 
 @section('title', 'Adhérents')
 
@@ -43,5 +43,5 @@
         </tbody>
     </table>
 
-    {{ $adherents->links() }}
+   
 @endsection

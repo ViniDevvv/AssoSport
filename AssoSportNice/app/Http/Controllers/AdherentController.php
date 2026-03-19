@@ -29,14 +29,10 @@ class AdherentController extends Controller
             'ADH_PRENOM' => 'required|string|max:25',
             'ADH_DDN' => 'nullable|date',
             'ADH_ADRESSE' => 'nullable|string|max:50',
-            'ADH_EMAIL' => 'nullable|email|max:50',
-            'ADH_PASSWORD' => 'required|string|min:8',
-            'ADH_ROLE' => 'required|string|max:20',
-            'ADH_HASH_PWD' => 'required|string|max:255',
         ]);
 
         if (empty($data['ADH_ID'])) {
-            $data['ADH_ID'] = Str::uuid()->toString();
+            $data['ADH_ID'] = strtoupper(Str::random(15));
         }
 
         Adherent::create($data);

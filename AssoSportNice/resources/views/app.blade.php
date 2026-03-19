@@ -32,7 +32,8 @@
 </nav>
 
 <main>
-    @yield('content')
+    
+    @yield('content')       <!-- ici sera insérée la section content -->
 </main>
 
 <footer>
