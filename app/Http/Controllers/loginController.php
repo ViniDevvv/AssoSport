@@ -55,10 +55,7 @@ class LoginController extends Controller
 
     private function passwordMatches(string $plainPassword, Adherent $adherent): bool
     {
-        if (!empty($adherent->ADH_HASH_PWD) && Hash::check($plainPassword, $adherent->ADH_HASH_PWD)) {
-            return true;
-        }
-
-        return false;
+        return !empty($adherent->ADH_HASH_PWD)
+            && Hash::check($plainPassword, $adherent->ADH_HASH_PWD);
     }
 }

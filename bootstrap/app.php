@@ -15,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'session.auth' => \App\Http\Middleware\EnsureSessionAuthenticated::class,
             'admin' => \App\Http\Middleware\EnsureAdminRole::class,
+            'non-admin' => \App\Http\Middleware\EnsureNonAdminRole::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

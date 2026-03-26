@@ -8,8 +8,6 @@ class Competition extends Model
 {
     protected $table = 'COMPETITION';
     protected $primaryKey = 'COM_ID';
-    public $incrementing = true;
-    protected $keyType = 'int';
     public $timestamps = false;
 
     protected $fillable = [

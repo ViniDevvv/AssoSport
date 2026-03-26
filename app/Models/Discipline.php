@@ -8,8 +8,6 @@ class Discipline extends Model
 {
     protected $table = 'DISCIPLINE';
     protected $primaryKey = 'DIS_ID';
-    public $incrementing = true;
-    protected $keyType = 'int';
     public $timestamps = false;
 
     protected $fillable = [

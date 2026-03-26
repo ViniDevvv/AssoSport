@@ -81,3 +81,4 @@ class AdherentController extends Controller
             ->with('success', 'Adhérent supprimé.');
     }
 }
+

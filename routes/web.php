@@ -24,7 +24,7 @@ Route::get('/competitions', [CompetitionController::class, 'index'])->name('comp
 Route::get('/competitions/{id}', [CompetitionController::class, 'show'])->name('competitions.show');
 
 // Parcours adherent connecte
-Route::middleware(['session.auth'])->group(function () {
+Route::middleware(['session.auth', 'non-admin'])->group(function () {
     Route::post('/competitions/{id}/inscription', [InscriptionController::class, 'store'])->name('inscriptions.store');
     Route::get('/mes-inscriptions', [InscriptionController::class, 'index'])->name('inscriptions.index');
 });

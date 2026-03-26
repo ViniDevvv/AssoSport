@@ -12,7 +12,7 @@
         <p><strong>Utilisateurs :</strong> {{ $stats['adherents'] }}</p>
     </div>
 
-    <div class="mt-3">
+    <div class="mt-3 admin-actions">
         <a class="btn" href="{{ route('clubs.index') }}">Gerer les clubs</a>
         <a class="btn" href="{{ route('disciplines.index') }}">Gerer les disciplines</a>
         <a class="btn" href="{{ route('adherents.index') }}">Gerer les utilisateurs</a>
